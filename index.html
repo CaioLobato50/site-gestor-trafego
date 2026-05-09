@@ -409,7 +409,7 @@ mascaraTel(document.getElementById('cta-telefone'));
     return 'Orgânico';
   }
   window.addEventListener('load',function(){
-    fetch(WEBHOOK,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},
+    fetch(WEBHOOK,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},
       body:JSON.stringify({tipo:'visita',origem:getOrigem(),utm_source:getParam('utm_source'),utm_campaign:getParam('utm_campaign'),pagina:window.location.href,dispositivo:dispositivo})
     }).catch(function(){});
   });
@@ -422,7 +422,7 @@ mascaraTel(document.getElementById('cta-telefone'));
     if(!nome){nomeEl.classList.add('error');nomeEl.focus();valido=false;}else{nomeEl.classList.remove('error');}
     if(!tel||tel.replace(/\D/g,'').length<10){telEl.classList.add('error');if(valido)telEl.focus();valido=false;}else{telEl.classList.remove('error');}
     if(!valido)return;
-    fetch(WEBHOOK,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},
+    fetch(WEBHOOK,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},
       body:JSON.stringify({tipo:'lead',nome:nome,telefone:tel,origem:getOrigem(),utm_source:getParam('utm_source'),utm_campaign:getParam('utm_campaign'),pagina:window.location.href,dispositivo:dispositivo})
     }).catch(function(){});
     if(typeof fbq!=='undefined')fbq('track','Lead');
